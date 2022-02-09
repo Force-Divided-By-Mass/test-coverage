@@ -1,33 +1,22 @@
-name: iOS - Actions
+name: CI
 
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches:
+      - '*'
 
 jobs:
-  build:
-    name: Build and Test default scheme using any available iPhone simulator
+  tests:
     runs-on: macos-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Lint
-        run: swiftlint
-  
-      - name: Build and Test
-        run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' build test
-  codecov:
-    container:
-      image: swift:5.3
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: swift test --enable-test-discovery --enable-code-coverage
-      - uses: mattpolzin/swift-codecov-action@0.6.0
-        with:
-          MINIMUM_COVERAGE: 98
-
+    - uses: actions/checkout@v2
+    - name: Lint
+      run: swiftlint
+    - name: Build for macOS
+      run: swift build -v
+    - name: Run macOS tests
+      run: swift test -v
+    - name: Run iOS tests
+      run: sh scripts/ci-ios-code-coverage.sh
