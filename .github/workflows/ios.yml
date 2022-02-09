@@ -14,8 +14,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Lint
       run: swiftlint
-    - name: Build for macOS
-      run: swift build -v
     - name: Run macOS tests
       run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' build test
     - name: Run iOS tests
