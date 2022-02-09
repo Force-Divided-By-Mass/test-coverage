@@ -20,3 +20,6 @@ jobs:
       - name: testing ... iPhone 11
         run: xcodebuild test-without-building -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2'
 
+      - name: Codecov
+        uses: codecov/codecov-action@v2.1.0
+
