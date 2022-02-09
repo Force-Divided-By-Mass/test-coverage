@@ -1,5 +1,5 @@
 #!/bin/sh
-SCHEME="IndexedDataStore"
+SCHEME="TestMe"
 RESULT_BUNDLE="CodeCoverage.xcresult"
 RESULT_JSON="CodeCoverage.json"
 MIN_CODE_COVERAGE=50.0 # should really be higher =)
@@ -16,7 +16,7 @@ set -o pipefail && env NSUnbufferedIO=YES xcodebuild build-for-testing -scheme $
 set -o pipefail && env NSUnbufferedIO=YES xcodebuild test-without-building -scheme $SCHEME -destination "platform=iOS Simulator,OS=latest,name=iPhone 12" -enableCodeCoverage YES -resultBundlePath $RESULT_BUNDLE | xcpretty
 
 set -o pipefail && env NSUnbufferedIO=YES xcrun xccov view –report –json $RESULT_BUNDLE > $RESULT_JSON
-CODE_COVERAGE=$(cat $RESULT_JSON | jq '.targets[] | select( .name == "IndexedDataStore" and .executableLines > 0 ) | .lineCoverage')
+CODE_COVERAGE=$(cat $RESULT_JSON | jq '.targets[] | select( .name == "TestMe" and .executableLines > 0 ) | .lineCoverage')
 CODE_COVERAGE=$(echo $CODE_COVERAGE*100.0 | bc)
 
 COVERAGE_PASSES=$(echo "$CODE_COVERAGE > $MIN_CODE_COVERAGE" | bc)
