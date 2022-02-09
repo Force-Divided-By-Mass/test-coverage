@@ -14,14 +14,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: iOS build setup
-        run: xcodebuild build-for-testing -scheme TestMe  -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2'
 
-      - name: testing ... iPhone 11
-        run: xcodebuild test-without-building -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2'
-
-      - name: Coverage
-        run: xcrun xccov view Logs/Test/*.xcresult --json > coverage.json
+      - name: Lint
+        run: swiftlint
+  
+      - name: Build and Test
+        run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' build test
         
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
