@@ -17,5 +17,5 @@ jobs:
     # - name: Run macOS tests
     #   run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' build test
     - name: Run iOS tests
-      #run: sh scripts/ci-ios-code-coverage.sh
-      run: ruby ./scripts/coverage.rb
+      run: sh scripts/ci-ios-code-coverage.sh
+      #run: ruby ./scripts/coverage.rb
