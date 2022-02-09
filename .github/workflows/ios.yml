@@ -16,12 +16,13 @@ jobs:
     # - name: Lint
     #   run: swiftlint
       - name: Run macOS tests
-        run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2'
+        run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' 
       
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: latest
+          ruby-version: 2.7.2
+          bundler-cache: true
         
       - name: Run tests 
         run: |
