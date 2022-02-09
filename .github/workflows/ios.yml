@@ -21,7 +21,7 @@ jobs:
         run: xcodebuild test-without-building -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2'
 
       - name: Coverage
-        run: xcrun xccov view TestMe/Logs/Test/*.xccovreport --json > coverage.json
+        run: xcrun xccov view Logs/Test/*.xcresult --json > coverage.json
         
       - name: Codecov
         uses: codecov/codecov-action@v2.1.0
