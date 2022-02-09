@@ -11,10 +11,11 @@ jobs:
   tests:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Lint
-      run: swiftlint
-    - name: Run macOS tests
-      run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' build test
+    # - uses: actions/checkout@v2
+    # - name: Lint
+    #   run: swiftlint
+    # - name: Run macOS tests
+    #   run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' build test
     - name: Run iOS tests
-      run: sh scripts/ci-ios-code-coverage.sh
+      #run: sh scripts/ci-ios-code-coverage.sh
+      run: sh scripts/coverage.rb
