@@ -13,17 +13,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-    # - name: Lint
-    #   run: swiftlint
-      - name: Run macOS tests
+
+      - name: Tests
         run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' 
-        
-      - name: Run tests 
-        run: gem install fastlane
-      # - name: Run Coverage
-      - name: Run tests 
-        run: |
-          bundle exec fastlane coverage
+    
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: 2.7.2
+            bundler-cache: true
+            
+      - name: Coverage 
+        run: bundle exec fastlane coverage
       # - name: Run Coverage
       #   run: xcrun xccov vierew –report –json "CodeCoverage.xcresult" > "CodeCoverage.json"
      
