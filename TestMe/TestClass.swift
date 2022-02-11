@@ -7,13 +7,12 @@
 
 import Foundation
 
-
 class TestClass {
-    
+
     func returnInt() -> Int {
         return 1
     }
-    
+
     func returnString() -> String {
         return "hello world"
     }

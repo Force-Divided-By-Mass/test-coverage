@@ -19,11 +19,10 @@ class TestMeTests: XCTestCase {
     }
 
     func testFailedExample() {
-        //XCTFail("Failed Test")
         XCTAssert(true)
     }
 
-    func testPassedExample()  {
+    func testPassedExample() {
         XCTAssert(true)
     }
 }

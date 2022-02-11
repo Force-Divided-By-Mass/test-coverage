@@ -6,7 +6,6 @@ on:
   pull_request:
     branches:
       - '*'
-
 jobs:
   tests:
     runs-on: macos-latest
@@ -14,19 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Lint
+        run: swiftlint lint --quiet
+
+      - name: Bundle install
+        run: bundle install
+       
       - name: Tests
-        run: xcodebuild test -enableCodeCoverage YES -scheme TestMe -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.2' 
-    
-      - name: Set up ruby env
-        uses: ruby/setup-ruby@v1
-          with:
-            ruby-version: 2.7.2
-            bundler-cache: true
-            
+        run: bundle exec fastlane tests
+
       - name: Coverage 
         run: bundle exec fastlane coverage
-      # - name: Run Coverage
-      #   run: xcrun xccov vierew –report –json "CodeCoverage.xcresult" > "CodeCoverage.json"
-     
-      # - name: Gather Coverage
-      #   run: ruby ./scripts/coverage.rb
