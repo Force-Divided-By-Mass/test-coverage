@@ -2,7 +2,7 @@
 # update_fastlane
 
 default_platform(:ios)
-project = "ForceDividedByMasss"
+project = "TestMe"
 
 platform :ios do
 
