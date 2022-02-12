@@ -23,4 +23,4 @@ jobs:
         run: bundle exec fastlane tests
 
       - name: Coverage 
-        run: ruby ./scripts/coverage.rb
+        run: ruby ./scripts/coverage.rb --scheme TestMe
