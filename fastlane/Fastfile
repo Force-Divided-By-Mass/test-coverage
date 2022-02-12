@@ -24,9 +24,7 @@ platform :ios do
         source_directory: 'output',
         output_directory: 'output',
         simple_output:true,
-        html: true,
-        github:true,
-        gutter_json: true,
+        json: true,
         ignore: '../../../Library/Developer/Xcode/DerivedData/*'
       )
     end
