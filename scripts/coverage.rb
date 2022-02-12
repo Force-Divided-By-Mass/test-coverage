@@ -17,16 +17,15 @@ def total_coverage (project)
    end
 end
 
-#@project = Slather::Project.open('./TestMe.xcodeproj')
-# @project.source_directory = './output'
-# @project.output_directory = './output'
-# @project.scheme = 'TestMe'
-# @project.coverage_service = :terminal  
-# @project.configure
-#coverage = total_coverage(@project)
-puts('::error low coverage')
-	exit -1
+@project = Slather::Project.open('./TestMe.xcodeproj')
+@project.source_directory = './output'
+@project.output_directory = './output'
+@project.scheme = 'TestMe'
+@project.coverage_service = :terminal  
+@project.configure
+coverage = total_coverage(@project)
+puts('Total Coverage: ' + coverage + '%')
 if coverage < 90 
-	puts('low coverage')
+	puts('Erro: Low Coverage')
 	exit -1
 end

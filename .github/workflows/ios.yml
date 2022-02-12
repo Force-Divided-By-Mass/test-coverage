@@ -13,14 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Lint
-      #   run: swiftlint lint --quiet
+      - name: Lint
+        run: swiftlint lint --quiet
 
       - name: Bundle install
         run: bundle install
        
-      # - name: Tests
-      #   run: bundle exec fastlane tests
+      - name: Tests
+        run: bundle exec fastlane tests
 
       - name: Coverage 
         run: ruby ./scripts/coverage.rb
