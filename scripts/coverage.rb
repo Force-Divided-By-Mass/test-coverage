@@ -25,8 +25,8 @@ end
 # @project.configure
 #coverage = total_coverage(@project)
 puts('::error low coverage')
-	exit
+	exit -1
 if coverage < 90 
 	puts('low coverage')
-	exit
+	exit -1
 end
