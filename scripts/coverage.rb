@@ -24,7 +24,7 @@ end
 @project.coverage_service = :terminal  
 @project.configure
 coverage = total_coverage(@project)
-puts('Total Coverage: ' + coverage + '%')
+puts('Total Coverage: ' + coverage.to_s + '%')
 if coverage < 90 
 	puts('Erro: Low Coverage')
 	exit -1
