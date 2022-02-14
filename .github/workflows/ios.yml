@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: bytedissident/fdmserver
-          token: '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'
+          token: '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'
       # Add or replace dependency steps here
       - name: Build
         run: docker-compose build 
