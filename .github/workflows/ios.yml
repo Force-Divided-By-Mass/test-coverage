@@ -1,3 +1,29 @@
+# name: CI
+
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches:
+#       - '*'
+# jobs:
+#   tests:
+#     runs-on: macos-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+
+#       - name: Lint
+#         run: swiftlint lint --quiet
+
+#       - name: Bundle install
+#         run: bundle install
+       
+#       - name: Tests
+#         run: bundle exec fastlane tests
+
+#       - name: Coverage 
+#         run: ruby ./scripts/coverage.rb --scheme TestMe
 name: CI
 
 on:
@@ -7,7 +33,28 @@ on:
     branches:
       - '*'
 jobs:
-  tests:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: bytedissident/fdmserver
+          token: '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'
+      # Add or replace dependency steps here
+      - name: Build
+        run: docker-compose build 
+
+      # Add or replace database setup steps here
+      - name: Database Create
+        run: docker-compose run web rake db:create
+
+      - name: Database Migrate
+        run: docker-compose run web rake db:migrate 
+      
+      - name: Up 
+        run: docker-compose up -d
+  lint:
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -15,12 +62,19 @@ jobs:
 
       - name: Lint
         run: swiftlint lint --quiet
+  unit-tests:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Bundle install
-        run: bundle install
-       
-      - name: Tests
-        run: bundle exec fastlane tests
+      # - name: Bundle install
+      #   run: bundle install
 
-      - name: Coverage 
-        run: ruby ./scripts/coverage.rb --scheme TestMe
+      - name: test
+        uses: nev7n/wait_for_response@v1
+        with:
+          url: 'http://localhost:3000/'
+          responseCode: 200
+          timeout: 2000
+          interval: 500
