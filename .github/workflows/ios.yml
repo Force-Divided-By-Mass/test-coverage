@@ -54,27 +54,27 @@ jobs:
       
       - name: Up 
         run: docker-compose up -d
-  lint:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # lint:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Lint
-        run: swiftlint lint --quiet
-  unit-tests:
-    runs-on: macos-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  #     - name: Lint
+  #       run: swiftlint lint --quiet
+  # unit-tests:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      # - name: Bundle install
-      #   run: bundle install
+  #     # - name: Bundle install
+  #     #   run: bundle install
 
-      - name: test
-        uses: nev7n/wait_for_response@v1
-        with:
-          url: 'http://localhost:3000/'
-          responseCode: 200
-          timeout: 2000
-          interval: 500
+  #     - name: test
+  #       uses: nev7n/wait_for_response@v1
+  #       with:
+  #         url: 'http://localhost:3000/'
+  #         responseCode: 200
+  #         timeout: 2000
+  #         interval: 500
