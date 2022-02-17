@@ -12,7 +12,6 @@ OptionParser.new do |parser|
   end
 end.parse!
 
-
 ## Run actions
 # puts('Lint code')
 # system('swiftlint')
@@ -29,6 +28,6 @@ end.parse!
 
 ## commit branch
 if push 
+	system('git commit -a -m "Automated push message"')
 	puts(system('git push origin head'))
-
 end
